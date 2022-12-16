@@ -8,20 +8,23 @@ public class Cosines extends Functions {
         super(x, e);
     }
 
-    private double sinusCalc() {
+    private double cosinesCalc() {
         int n = 1;
         double res = 0;
         double num;
         do {
-            num = this.multi(-1, n) * this.multi(x, 2 * n)/fact(2 * n);
+            num = this.multi(-1, n) * this.multi(x, 2 * n);
+            for (int i = 1; i <= 2 * n; i++) num = num/i;
             res = res + num;
             n++;
-        } while (num >= e);
+            System.out.println((int)num + " " + x);
+        } while ( (int)(Math.abs(num)*1000000) >= (int)(e*1000000));
+        System.out.println(res);
         return res;
     }
 
     @Override
-    double getResult() {
-        return sinusCalc();
+    public double getResult() {
+        return cosinesCalc();
     }
 }

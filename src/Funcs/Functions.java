@@ -2,7 +2,7 @@ package Funcs;
 
 import javax.management.InvalidAttributeValueException;
 
-abstract class Functions {
+public abstract class Functions {
     protected double x, e;
     protected Functions(double x, double e) throws InvalidAttributeValueException {
         setE(e);
@@ -12,24 +12,35 @@ abstract class Functions {
         if(n==0) return 1;
         double result = x;
         for (int i = 1; i < n; i++) {
+            //System.out.println(result + "lo");
             result = result * x;
         }
         return result;
     }
 
-    int fact(int n) {
+    long fact(int n) {
         int res = 1;
         for (int i = 2; i <= n; i++){
             res = res * i;
         }
         return res;
     }
+    public static boolean almostEqualRelative(double a, double b) {
+        // находим разницу
+        double diff = Math.abs(a - b);
+        double maxRelDiff = 0.00001;
+        a = Math.abs(a);
+        b = Math.abs(b);
+        // находим большее
+        double largest = Math.max(b, a);
 
-    abstract double getResult();
+        return diff <= largest * maxRelDiff;
+    }
 
-    void setX(double x) {
+    abstract public double getResult();
+
+    void setX(double x) throws InvalidAttributeValueException {
         this.x = x;
-        return x;
     }
 
     void setE(double e) throws InvalidAttributeValueException {

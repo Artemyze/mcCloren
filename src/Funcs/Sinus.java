@@ -13,14 +13,14 @@ public class Sinus extends Functions {
         double res = 0;
         double num;
         do {
-            num = this.multi(-1, n + 1) * this.multi(x, 2 * n + 1)/fact(2 * n);
+            num = this.multi(-1, n + 1) * this.multi(x, 2 * n - 1)/fact(2 * n - 1);
             res = res + num;
             n++;
         } while (num >= e);
         return res;
     }
     @Override
-    double getResult() {
+    public double getResult() {
         return sinusCalc();
     }
 }
